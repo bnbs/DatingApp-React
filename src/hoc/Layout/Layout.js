@@ -7,7 +7,7 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <Navbar isAuth={this.props.isAuthenticated}/>
+                <Navbar isAuth={this.props.isAuthenticated} userPhoto={this.props.userPhoto}/>
                 <main>
                     teste
                 </main>
@@ -18,7 +18,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.token !== null
+        isAuthenticated: state.token !== null,
+        userPhoto: state.user ? JSON.parse(state.user).photoUrl : null
     }
 }
 

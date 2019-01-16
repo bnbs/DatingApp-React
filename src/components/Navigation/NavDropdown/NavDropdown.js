@@ -17,12 +17,12 @@ library.add(faSignOutAlt);
 const navDropdown = (props) => {
 
     return (
-        <Nav pullRight>
+        <Nav pullRight>            
             <NavDropdown eventKey={4} title="Welcome Fulano" id="basic-nav-dropdown">
                 <MenuItem eventKey={4.1}><FontAwesomeIcon icon="user"/>Edit Profile</MenuItem>
                 <MenuItem divider />
                 <MenuItem eventKey={4.2} href="/logout"><FontAwesomeIcon icon="sign-out-alt"/>Logout</MenuItem>
-            </NavDropdown>
+            </NavDropdown>     
         </Nav>
     );
 }
