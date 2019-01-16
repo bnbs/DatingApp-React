@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navigation/Navbar/Navbar';
+import { connect } from 'react-redux';
 
 class Layout extends Component {
 
     render() {
         return (
             <div>
-                <Navbar/>
+                <Navbar isAuth={this.props.isAuthenticated}/>
                 <main>
                     teste
                 </main>
@@ -15,4 +16,10 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.token !== null
+    }
+}
+
+export default connect(mapStateToProps)(Layout);

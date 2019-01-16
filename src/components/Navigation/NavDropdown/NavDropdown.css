@@ -5,6 +5,14 @@
     color: #fafafa;
 }
 
+.dropdown-menu {
+    padding: 10px 0;
+}
+
+.svg-inline--fa {
+    margin-right: 4px;
+}
+
 @media (max-width: 768px) { 
 
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus, 
