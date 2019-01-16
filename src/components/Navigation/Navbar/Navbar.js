@@ -12,13 +12,12 @@ import './Navbar.css';
 
 const navbar = (props) => {
 
-    console.log(props);
     let navContent = <Login/>;
     if(props.isAuth){
         navContent = (
             <div>
                 <NavbarItems/>                
-                <NavDropdown/>
+                <NavDropdown userKnownAs={props.userKnownAs}/>
                 <UserPhoto userPhoto={props.userPhoto}/>
             </div>            
         );

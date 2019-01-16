@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Navbar from 'react-bootstrap/lib/Navbar';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,7 +13,9 @@ library.add(faHeart);
 
 const logo = () => (
     <Navbar.Brand>
-        <a href="#home"><FontAwesomeIcon icon="heart"/>Dating App</a>
+        <LinkContainer to="/">
+            <a href="/"><FontAwesomeIcon icon="heart"/>Dating App</a>
+        </LinkContainer>        
     </Navbar.Brand>
 );
 

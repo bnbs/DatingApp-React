@@ -4,12 +4,15 @@
     border-radius: 0;
 }
 
-.navbar-inverse .navbar-nav > li {
+.navbar-header {
     border-bottom: 2px solid #d50000;
 }
 
-.navbar-inverse .navbar-nav > li:hover,
-.navbar-inverse .navbar-nav > li:active {
+.navbar-inverse .navbar-nav > li > a:focus, 
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > .active > a, 
+.navbar-inverse .navbar-nav > .active > a:focus, 
+.navbar-inverse .navbar-nav > .active > a:hover {
     border-bottom: 2px solid #fafafa;
     background-color: #f44336;
 }
