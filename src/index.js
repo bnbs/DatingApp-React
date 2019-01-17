@@ -6,21 +6,39 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
+import userReducer from './store/reducers/user';
+
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
+
+const options = {
+    position: 'bottom right',
+    timeout: 3000,
+    offset: '30px',
+    transition: 'scale'
+}
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const store = createStore(authReducer, composeEnhancers(
+const rootReducer = combineReducers({
+    auth: authReducer,
+    user: userReducer
+}); 
+
+const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
 ));
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <AlertProvider template={AlertTemplate} {...options}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </AlertProvider>
     </Provider>    
 );
 

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 class Layout extends Component {
 
     render() {
-        console.log(this.props);
         return (            
             <div>
                 <Navbar isAuth={this.props.isAuthenticated} userPhoto={this.props.userPhoto} userKnownAs={this.props.userKnownAs}/>
@@ -19,9 +18,9 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.token !== null,
-        userPhoto: state.user ? JSON.parse(state.user).photoUrl : null,
-        userKnownAs: state.user ? JSON.parse(state.user).knownAs : null,
+        isAuthenticated: state.auth.token !== null,
+        userPhoto: state.auth.user ? JSON.parse(state.auth.user).photoUrl : null,
+        userKnownAs: state.auth.user ? JSON.parse(state.auth.user).knownAs : null,
     }
 }
 

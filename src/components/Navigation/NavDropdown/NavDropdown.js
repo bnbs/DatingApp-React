@@ -3,6 +3,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,10 +20,12 @@ const navDropdown = (props) => {
     let message = 'Welcome ' + props.userKnownAs;
     return (
         <Nav pullRight>            
-            <NavDropdown eventKey={4} title={message} id="basic-nav-dropdown">
-                <MenuItem eventKey={4.1}><FontAwesomeIcon icon="user"/>Edit Profile</MenuItem>
+            <NavDropdown title={message} id="basic-nav-dropdown">
+                <MenuItem><FontAwesomeIcon icon="user"/>Edit Profile</MenuItem>
                 <MenuItem divider />
-                <MenuItem eventKey={4.2} href="/logout"><FontAwesomeIcon icon="sign-out-alt"/>Logout</MenuItem>
+                <LinkContainer to="/logout">
+                    <MenuItem><FontAwesomeIcon icon="sign-out-alt"/>Logout</MenuItem>
+                </LinkContainer>                
             </NavDropdown>     
         </Nav>
     );
