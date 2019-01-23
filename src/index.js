@@ -11,16 +11,6 @@ import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
 import userReducer from './store/reducers/user';
 
-import { Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
-
-const options = {
-    position: 'bottom right',
-    timeout: 3000,
-    offset: '30px',
-    transition: 'scale'
-}
-
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
@@ -34,11 +24,9 @@ const store = createStore(rootReducer, composeEnhancers(
 
 const app = (
     <Provider store={store}>
-        <AlertProvider template={AlertTemplate} {...options}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </AlertProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>    
 );
 

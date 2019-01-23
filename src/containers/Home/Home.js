@@ -11,11 +11,11 @@ class Home extends Component {
         registerMode: false
     };
     
-    cancelRegisterMode() {
+    cancelRegisterMode = () => {
         this.setState({registerMode: false});
     }
 
-    registerToggle() {
+    registerToggle = () => {
         this.setState({registerMode: true});
     }
     
@@ -27,14 +27,14 @@ class Home extends Component {
                                     <div className="TextAlign">
                                         <h1 className="Text">Find your match</h1>
                                         <h4 className="Text">Come on in to view your matches... All you need to do is sign up!</h4>
-                                        <Button bsStyle="danger" bsSize="large" onClick={this.registerToggle.bind(this)}>Register</Button>
+                                        <Button bsStyle="danger" bsSize="large" onClick={this.registerToggle}>Register</Button>
                                     </div>                                    
                                 </div>);
         }
 
         let register = null;
         if(this.state.registerMode) {
-            register = <Register canceled={this.cancelRegisterMode.bind(this)}/>
+            register = <Register canceled={this.cancelRegisterMode}/>
         }
 
         return(

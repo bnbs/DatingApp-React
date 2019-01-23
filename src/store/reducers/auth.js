@@ -16,7 +16,7 @@ const authSuccess = (state, action) => {
         token: action.token,
         user: action.user,
         error: null
-     } );
+     } ); 
 };
 
 const authFail = (state, action) => {
@@ -26,7 +26,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { token: null, user: null });
+    return updateObject(state, { token: null, user: null, loginSucceed: false });
 };
 
 const authReducer = ( state = initialState, action ) => {

@@ -20,7 +20,7 @@ const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
         userPhoto: state.auth.user ? JSON.parse(state.auth.user).photoUrl : null,
-        userKnownAs: state.auth.user ? JSON.parse(state.auth.user).knownAs : null,
+        userKnownAs: state.auth.user ? JSON.parse(state.auth.user).knownAs : null
     }
 }
 

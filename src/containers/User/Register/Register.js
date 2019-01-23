@@ -125,7 +125,7 @@ class Register extends Component {
             formData[formElementIdentifier] = this.state.userData[formElementIdentifier].value;
         }
 
-        formData['Gender'] = this.state.gender;
+        formData['Gender'] = this.state.gender.toLowerCase();
         this.props.onRegister( formData );
     }
     
@@ -161,7 +161,7 @@ class Register extends Component {
                             </FormGroup>
                             {formFields}
                             <ButtonToolbar>
-                                <Button bsStyle="success" onClick={this.submitHandler.bind(this)}>Register</Button>
+                                <Button bsStyle="success" onClick={this.submitHandler}>Register</Button>
                                 <Button onClick={this.props.canceled}>Cancel</Button>                             
                             </ButtonToolbar>                
                         </form>
