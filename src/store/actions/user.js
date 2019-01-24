@@ -109,7 +109,7 @@ export const sendLikeFail = (error) => {
     };
 };
 
-export const sendLike = (id: number, recipientId: number) => {
+export const sendLike = (id, recipientId) => {
     return dispatch => {
         let url = 'http://localhost:5000/api/users/' + id + '/like/' + recipientId;
         let token = localStorage.getItem('token');
@@ -120,6 +120,53 @@ export const sendLike = (id: number, recipientId: number) => {
         })
         .catch(err => {
             dispatch(sendLikeFail(err));
+        });
+    }
+}
+
+export const getMessagesSuccess = (paginatedResult) => {
+    return {
+        type: actionTypes.GET_MESSAGES_SUCCESS,
+        paginatedResult: paginatedResult
+    };
+};
+
+export const getMessagesFail = (error) => {
+    return {
+        type: actionTypes.GET_MESSAGES_FAIL,
+        error: error
+    };
+};
+
+export const getMessages = (id, page = null, itemsPerPage = null, messageContainer = null) => {
+    return dispatch => {
+
+        let params = {};
+
+        if (page != null && itemsPerPage != null) {
+            params['pageNumber'] = page;
+            params['pageSize'] = itemsPerPage;
+        }
+
+        params['MessageContainer'] = messageContainer;
+
+        let url = 'http://localhost:5000/api/users/' + id + '/messages/';
+        let token = localStorage.getItem('token');
+        axios.get(url, { 
+            headers: {"Authorization" : `Bearer ${token}`}, 
+            params: params
+        })
+        .then(response => {
+            let paginatedResult = {};
+            paginatedResult.messages = response.data;
+            if (response.headers['pagination'] != null) {
+                paginatedResult.pagination = JSON.parse(response.headers['pagination']);
+            }
+            dispatch(getMessagesSuccess(paginatedResult));
+        })
+        .catch(err => {
+            console.log('Err: ' + err);
+            dispatch(getMessagesFail(err));
         });
     }
 }

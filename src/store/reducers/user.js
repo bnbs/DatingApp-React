@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     error: null,
     users: null,
-    pagination: null
+    pagination: null,
+    messages: null
 };
 
 const userRegisterStart = ( state, action ) => {
@@ -47,6 +48,21 @@ const sendLikeFail = (state, action) => {
     });
 };
 
+const getMessagesSuccess = (state, action) => {
+    console.log('getMessagesSuccess: ' + JSON.stringify(action.paginatedResult));
+    return updateObject( state, {
+        error: null,
+        messages: action.paginatedResult.messages,
+        pagination: action.paginatedResult.pagination
+    });
+};
+
+const getMessagesFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error
+    });
+};
+
 const userReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.AUTH_START: return userRegisterStart(state, action);
@@ -56,6 +72,8 @@ const userReducer = ( state = initialState, action ) => {
         case actionTypes.GET_USERS_FAIL: return getUsersFail(state, action);
         case actionTypes.SEND_LIKE_SUCCESS: return sendLikeSuccess(state, action);
         case actionTypes.SEND_LIKE_FAIL: return sendLikeFail(state, action);
+        case actionTypes.GET_MESSAGES_SUCCESS: return getMessagesSuccess(state, action);
+        case actionTypes.GET_MESSAGES_FAIL: return getMessagesFail(state, action);
         default:
             return state;
     }
