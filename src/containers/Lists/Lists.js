@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
 import Grid from 'react-bootstrap/lib/Grid';
+import { connect } from 'react-redux';
+import Pagination from '../../components/UI/Pagination/Pagination';
 import UserCard from '../../components/User/UserCard/UserCard';
 import UserFilter from '../../components/User/UserFilter/UserFilter';
-import { updateObject } from '../../shared/utility';
-import Pagination from '../../components/UI/Pagination/Pagination';
-
-import './Lists.css';
+import '../../shared/styles.css';
+import { updateObject, getPageNumber } from '../../shared/utility';
+import * as actions from '../../store/actions/index';
 
 class Lists extends Component {
 
@@ -69,17 +68,11 @@ class Lists extends Component {
 
     pageChangeHandler = (event) => {
 
-        let page = event.target.text;
-        if(typeof page != 'number'){
-            if(page === '«') page = 1;
-            else if(page === '‹') page = this.props.pagination.currentPage - 1;
-            else if(page === '›') page = this.props.pagination.currentPage + 1;
-            else if(page === '»') page = this.props.pagination.totalPages;
-        }
+        let page = getPageNumber(event.target.text);        
         this.props.onGetUsers(page, this.props.pagination.itemsPerPage, this.getUserParams(), null);
     }
 
-    sendLike = (id: number) => {
+    sendLike = (id) => {
         this.props.onSendLike(this.props.user.id, id);
     }
     

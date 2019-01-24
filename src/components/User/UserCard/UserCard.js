@@ -1,11 +1,9 @@
 import React from 'react';
-import Col from 'react-bootstrap/lib/Col';
-import Button from 'react-bootstrap/lib/Button';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEnvelope, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faUser, faEnvelope} from '@fortawesome/free-solid-svg-icons';
-
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
 import './UserCard.css';
 
 library.add(faHeart);

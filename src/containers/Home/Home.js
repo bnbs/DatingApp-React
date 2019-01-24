@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import Register from '../User/Register/Register';
-
 import './Home.css';
 
 class Home extends Component {

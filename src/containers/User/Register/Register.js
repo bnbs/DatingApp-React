@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import Radio from 'react-bootstrap/lib/Radio';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Button from 'react-bootstrap/lib/Button';
-import Input from '../../../components/UI/Input/Input';
-
-import { updateObject, checkValidity } from '../../../shared/utility';
-import * as actions from '../../../store/actions/index';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Radio from 'react-bootstrap/lib/Radio';
+import Row from 'react-bootstrap/lib/Row';
 import { connect } from 'react-redux';
-
-
+import Input from '../../../components/UI/Input/Input';
+import { checkValidity, updateObject } from '../../../shared/utility';
+import * as actions from '../../../store/actions/index';
 import './Register.css';
 
 class Register extends Component {

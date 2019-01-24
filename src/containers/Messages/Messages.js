@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import Grid from 'react-bootstrap/lib/Grid';
-import Pagination from '../../components/UI/Pagination/Pagination';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Button from 'react-bootstrap/lib/Button';
-import Table from 'react-bootstrap/lib/Table';
-import TimeAgo from 'react-timeago';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEnvelope, faEnvelopeOpen, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeOpen, faPaperPlane, faEnvelope} from '@fortawesome/free-solid-svg-icons';
-
+import React, { Component } from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import Table from 'react-bootstrap/lib/Table';
+import { connect } from 'react-redux';
+import TimeAgo from 'react-timeago';
+import Pagination from '../../components/UI/Pagination/Pagination';
+import '../../shared/styles.css';
+import { getPageNumber } from '../../shared/utility';
+import * as actions from '../../store/actions/index';
 import './Messages.css';
 
 library.add(faEnvelopeOpen);
@@ -30,18 +30,13 @@ class Matches extends Component {
 
     getMessage = (message) => {
         this.setState({messageContainer: message});
-        this.props.onGetMessages(this.props.user.id, null, null, message);
+        this.props.onGetMessages(this.props.user.id, 1, this.props.pagination.itemsPerPage, message);
     }
 
     pageChangeHandler = (event) => {
 
-        let page = event.target.text;
-        if(typeof page != 'number'){
-            if(page === '«') page = 1;
-            else if(page === '‹') page = this.props.pagination.currentPage - 1;
-            else if(page === '›') page = this.props.pagination.currentPage + 1;
-            else if(page === '»') page = this.props.pagination.totalPages;
-        }
+        let page = getPageNumber(event.target.text);  
+        this.props.onGetMessages(this.props.user.id, page, this.props.pagination.itemsPerPage, this.state.messageContainer);
     }
     
     render() { 

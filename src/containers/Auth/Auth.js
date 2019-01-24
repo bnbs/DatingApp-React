@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import Navbar from 'react-bootstrap/lib/Navbar';
 import Button from 'react-bootstrap/lib/Button';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import { connect } from 'react-redux';
 import Input from '../../components/UI/Input/Input';
-
-import './Auth.css';
+import { checkValidity, updateObject } from '../../shared/utility';
 import * as actions from '../../store/actions/index';
-import { updateObject, checkValidity } from '../../shared/utility';
+import './Auth.css';
 
 class Auth extends Component {
 

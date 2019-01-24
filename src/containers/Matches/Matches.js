@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import Grid from 'react-bootstrap/lib/Grid';
-import UserCard from '../../components/User/UserCard/UserCard';
-import Pagination from '../../components/UI/Pagination/Pagination';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
-
-import './Matches.css';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Grid from 'react-bootstrap/lib/Grid';
+import { connect } from 'react-redux';
+import Pagination from '../../components/UI/Pagination/Pagination';
+import UserCard from '../../components/User/UserCard/UserCard';
+import '../../shared/styles.css';
+import { getPageNumber } from '../../shared/utility';
+import * as actions from '../../store/actions/index';
 
 class Matches extends Component {
 
@@ -31,17 +31,11 @@ class Matches extends Component {
 
     pageChangeHandler = (event) => {
 
-        let page = event.target.text;
-        if(typeof page != 'number'){
-            if(page === '«') page = 1;
-            else if(page === '‹') page = this.props.pagination.currentPage - 1;
-            else if(page === '›') page = this.props.pagination.currentPage + 1;
-            else if(page === '»') page = this.props.pagination.totalPages;
-        }
+        let page = getPageNumber(event.target.text);  
         this.props.onGetUsers(page, this.props.pagination.itemsPerPage, null, this.state.filter);
     }
 
-    sendLike = (id: number) => {
+    sendLike = (id) => {
         this.props.onSendLike(this.props.user.id, id);
     }
     

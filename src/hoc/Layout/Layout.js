@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/Navigation/Navbar/Navbar';
 import { connect } from 'react-redux';
+import Navbar from '../../components/Navigation/Navbar/Navbar';
 
 class Layout extends Component {
 

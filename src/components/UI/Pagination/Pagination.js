@@ -4,7 +4,7 @@ import Pagination from 'react-bootstrap/lib/Pagination';
 const pagination = (props) => {
 
     let items = null;
-    let pagination: null;
+    let pagination = null;
     if(props.pagination){
 
         items = [];
