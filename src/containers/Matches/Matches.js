@@ -53,11 +53,11 @@ class Matches extends Component {
 
         return(
             <Grid>
-                <ButtonGroup className="d-flex">
+                <ButtonGroup className="d-flex-default">
                     <Button bsStyle="danger" onClick={this.getMembersWhoLikeMe}>Members who like me</Button>
                     <Button bsStyle="danger" onClick={this.getMembersWhoILike}>Members who I like</Button>
                 </ButtonGroup>
-                <div className="d-flex">
+                <div className="d-flex-default">
                     {users}                  
                 </div>
                 <Pagination pagination={this.props.pagination} changed={( event ) => this.pageChangeHandler( event )}/>

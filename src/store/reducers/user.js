@@ -5,7 +5,9 @@ const initialState = {
     error: null,
     users: null,
     pagination: null,
-    messages: null
+    messages: null,
+    userDetail: null,
+    messageThread: null
 };
 
 const userRegisterStart = ( state, action ) => {
@@ -49,7 +51,6 @@ const sendLikeFail = (state, action) => {
 };
 
 const getMessagesSuccess = (state, action) => {
-    console.log('getMessagesSuccess: ' + JSON.stringify(action.paginatedResult));
     return updateObject( state, {
         error: null,
         messages: action.paginatedResult.messages,
@@ -58,6 +59,47 @@ const getMessagesSuccess = (state, action) => {
 };
 
 const getMessagesFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error
+    });
+};
+
+const getUserSuccess = (state, action) => {
+    return updateObject( state, {
+        error: null,
+        userDetail: action.user
+    });
+};
+
+const getUserFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error
+    });
+};
+
+const getMessagesThreadSuccess = (state, action) => {
+    return updateObject( state, {
+        error: null,
+        messageThread: action.messages
+    });
+};
+
+const getMessagesThreadFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error
+    });
+};
+
+const sendMessageSuccess = (state, action) => {
+    let messages = [...state.messageThread];
+    messages.unshift(action.message);
+    return updateObject( state, {
+        error: null,
+        messageThread: messages
+    });
+};
+
+const sendMessageFail = (state, action) => {
     return updateObject( state, {
         error: action.error
     });
@@ -74,6 +116,12 @@ const userReducer = ( state = initialState, action ) => {
         case actionTypes.SEND_LIKE_FAIL: return sendLikeFail(state, action);
         case actionTypes.GET_MESSAGES_SUCCESS: return getMessagesSuccess(state, action);
         case actionTypes.GET_MESSAGES_FAIL: return getMessagesFail(state, action);
+        case actionTypes.GET_USER_SUCCESS: return getUserSuccess(state, action);
+        case actionTypes.GET_USER_FAIL: return getUserFail(state, action);
+        case actionTypes.GET_MESSAGES_THREAD_SUCCESS: return getMessagesThreadSuccess(state, action);
+        case actionTypes.GET_MESSAGES_THREAD_FAIL: return getMessagesThreadFail(state, action);
+        case actionTypes.SEND_MESSAGE_SUCCESS: return sendMessageSuccess(state, action);
+        case actionTypes.SEND_MESSAGE_FAIL: return sendMessageFail(state, action);
         default:
             return state;
     }

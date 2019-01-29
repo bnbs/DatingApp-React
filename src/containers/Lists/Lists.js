@@ -95,7 +95,7 @@ class Lists extends Component {
                     resetFilterClicked={this.resetFilterHandler} 
                     controls={this.state.controls}
                     changed={( event ) => this.inputChangedHandler( event )}/>
-                <div className="d-flex">
+                <div className="d-flex-default">
                     {users}                  
                 </div>
                 <Pagination pagination={this.props.pagination} changed={( event ) => this.pageChangeHandler( event )}/>

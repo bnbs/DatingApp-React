@@ -1,2 +1,2 @@
 export { auth, authCheckState, logout } from './auth';
-export { getMessages, getUsers, register, sendLike } from './user';
+export { getMessages, getMessageThread, getUser, getUsers, register, sendLike, sendMessage } from './user';

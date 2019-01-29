@@ -113,9 +113,8 @@ export const sendLike = (id, recipientId) => {
     return dispatch => {
         let url = 'http://localhost:5000/api/users/' + id + '/like/' + recipientId;
         let token = localStorage.getItem('token');
-        axios.post(url, { headers: {"Authorization" : `Bearer ${token}`}})
-        .then(response => {
-            console.log(response);
+        axios.post(url, {}, { headers: {"Authorization" : `Bearer ${token}`}})
+        .then(() => {
             dispatch(sendLikeSuccess());
         })
         .catch(err => {
@@ -165,8 +164,111 @@ export const getMessages = (id, page = null, itemsPerPage = null, messageContain
             dispatch(getMessagesSuccess(paginatedResult));
         })
         .catch(err => {
-            console.log('Err: ' + err);
             dispatch(getMessagesFail(err));
+        });
+    }
+}
+
+export const getUserSuccess = (user) => {
+    return {
+        type: actionTypes.GET_USER_SUCCESS,
+        user: user
+    };
+};
+
+export const getUserFail = (error) => {
+    return {
+        type: actionTypes.GET_USER_FAIL,
+        error: error
+    };
+};
+
+export const getUser = (userId) => {
+    return dispatch => {
+        let url = 'http://localhost:5000/api/users/' + userId;
+        let token = localStorage.getItem('token');
+        axios.get(url, { headers: {"Authorization" : `Bearer ${token}`}})
+        .then(response => {
+            dispatch(getUserSuccess(response.data));
+        })
+        .catch(err => {
+            dispatch(getUserFail(err));
+        });
+    }
+}
+
+export const getMessagesThreadSuccess = (messages) => {
+    return {
+        type: actionTypes.GET_MESSAGES_THREAD_SUCCESS,
+        messages: messages
+    };
+};
+
+export const getMessagesThreadFail = (error) => {
+    return {
+        type: actionTypes.GET_MESSAGES_THREAD_FAIL,
+        error: error
+    };
+};
+
+export const getMessageThread = (id, recipientId) => {
+
+    return dispatch => {
+
+        let url = 'http://localhost:5000/api/users/' + id + '/messages/thread/' + recipientId;
+        let token = localStorage.getItem('token');
+
+        axios.get(url, { headers: {"Authorization" : `Bearer ${token}`}})
+        .then(response => {
+
+            let messages = response.data;
+            if (messages && messages.length > 0) {
+                for (let i = 0; i < messages.length; i++) {
+                    if (messages[i].isRead === false && messages[i].recipientId === id) {
+                        markAsRead(id, messages[i].id);
+                    }
+                }
+            }
+            dispatch(getMessagesThreadSuccess(response.data));
+        })
+        .catch(err => {
+            dispatch(getMessagesThreadFail(err));
+        });
+    }    
+}
+
+export const markAsRead = (userId, messageId) => {
+    let url = 'http://localhost:5000/api/users/' + userId + '/messages/' + messageId + '/read';
+    let token = localStorage.getItem('token');
+    axios.post(url, {}, { headers: {"Authorization" : `Bearer ${token}`}});
+}
+
+export const sendMessageSuccess = (message) => {
+    return {
+        type: actionTypes.SEND_MESSAGE_SUCCESS,
+        message: message
+    };
+};
+
+export const sendMessageFail = (error) => {
+    return {
+        type: actionTypes.SEND_MESSAGE_FAIL,
+        error: error
+    };
+};
+
+export const sendMessage = (id, message) => {
+    return dispatch => {
+        let url = 'http://localhost:5000/api/users/' + id + '/messages';
+        let token = localStorage.getItem('token');
+        axios.post(url, message, { headers: {"Authorization" : `Bearer ${token}`}})
+        .then((response) => {
+            console.log('Response: ' + response);
+            dispatch(sendMessageSuccess(message));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(sendMessageFail(err));
         });
     }
 }

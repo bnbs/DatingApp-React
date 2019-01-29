@@ -11,9 +11,9 @@ import { connect } from 'react-redux';
 import Input from '../../../components/UI/Input/Input';
 import { checkValidity, updateObject } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
-import './Register.css';
+import './UserRegister.css';
 
-class Register extends Component {
+class UserRegister extends Component {
 
     state = {
         userData: {
@@ -157,7 +157,7 @@ class Register extends Component {
                                 <Radio name="radioGroup" inline value="Female" checked={this.state.gender === "Female"} onChange={this.handleGenderChange}>Female</Radio>
                             </FormGroup>
                             {formFields}
-                            <ButtonToolbar>
+                            <ButtonToolbar className="float-right">
                                 <Button bsStyle="success" onClick={this.submitHandler}>Register</Button>
                                 <Button onClick={this.props.canceled}>Cancel</Button>                             
                             </ButtonToolbar>                
@@ -175,4 +175,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
   
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(UserRegister);

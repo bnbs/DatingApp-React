@@ -29,12 +29,11 @@ class Matches extends Component {
     }
 
     getMessage = (message) => {
-        this.setState({messageContainer: message});
-        this.props.onGetMessages(this.props.user.id, 1, this.props.pagination.itemsPerPage, message);
+        this.props.onGetMessages(this.props.user.id, 1, this.props.pagination.itemsPerPage, message);  
+        this.setState({messageContainer: message});      
     }
 
     pageChangeHandler = (event) => {
-
         let page = getPageNumber(event.target.text);  
         this.props.onGetMessages(this.props.user.id, page, this.props.pagination.itemsPerPage, this.state.messageContainer);
     }
@@ -43,9 +42,9 @@ class Matches extends Component {
 
         let messages = null;
         let messagestable = null;
-        let pagination = null;
-        if(this.props.messages && this.props.messages.length > 0){
-
+        let pagination = null;    
+        if (this.props.messages && this.props.messages.length > 0){
+            
             messages = this.props.messages.map( (message, index) => (
                 <tr key={index}>
                     <td className="text-center">{message.content}</td>                    
@@ -53,14 +52,14 @@ class Matches extends Component {
                         if(this.state.messageContainer !== 'Outbox'){
                             return (
                                 <td className="text-center">
-                                    <img src={message.senderPhotoUrl} className="img-circle" alt=""></img>
+                                    <img src={message.senderPhotoUrl} className="rounded-circle" alt=""></img>
                                     <strong>{message.senderKnownAs}</strong>
                                 </td>   
                             ); 
                         }else if(this.state.messageContainer !== 'Inbox'){
                             return (
                                 <td className="text-center">
-                                    <img src={message.recipientPhotoUrl} className="img-circle" alt=""></img>
+                                    <img src={message.recipientPhotoUrl} className="rounded-circle" alt=""></img>
                                     <strong>{message.recipientKnownAs}</strong>
                                 </td>   
                             ); 
@@ -95,12 +94,12 @@ class Matches extends Component {
 
         return(
             <Grid>
-                <ButtonGroup className="d-flex">
+                <ButtonGroup className="d-flex-default">
                     <Button bsStyle="danger" onClick={() => this.getMessage('Unread')}><FontAwesomeIcon icon="envelope"/>Unread</Button>
                     <Button bsStyle="danger" onClick={() => this.getMessage('Inbox')}><FontAwesomeIcon icon="envelope-open"/>Inbox</Button>
                     <Button bsStyle="danger" onClick={() => this.getMessage('Outbox')}><FontAwesomeIcon icon="paper-plane"/>Outbox</Button>
                 </ButtonGroup>
-                <div className="d-flex">
+                <div className="d-flex-default">
                     {messagestable}
                 </div>
                 {pagination}
@@ -112,7 +111,7 @@ class Matches extends Component {
 const mapStateToProps = state => {
     return {
         pagination: state.user.pagination,
-        user: JSON.parse(state.auth.user),
+        user: JSON.parse(state.auth.user),        
         messages: state.user.messages
     }
 }

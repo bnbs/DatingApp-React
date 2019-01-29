@@ -1,4 +1,4 @@
-.Background div.col-lg-6 {
+.background div.col-lg-6 {
     position: absolute;
     left: 50%;
     top: 20%;
@@ -8,20 +8,16 @@
     padding: 16px;
 }
 
-.Background h2 {
+.background h2 {
     text-align: center;
     font-weight: bold;
     color: #d70000;
 }
 
-.Background form {
+.background form {
     padding: 0px 20px 20px;
 }
 
-.Background .control-label {
+.background .control-label {
     display: block;
-}
-
-.Background .btn-toolbar {
-    float: right;
 }

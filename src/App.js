@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
-import Layout from './hoc/Layout/Layout';
 import { connect } from 'react-redux';
-import * as actions from './store/actions/index';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-
-import Home from './containers/Home/Home';
-import Matches from './containers/Matches/Matches';
-import Lists from './containers/Lists/Lists';
-import Messages from './containers/Messages/Messages';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import './App.css';
 import Logout from './containers/Auth/Logout/Logout';
+import Home from './containers/Home/Home';
+import Lists from './containers/Lists/Lists';
+import Matches from './containers/Matches/Matches';
+import Messages from './containers/Messages/Messages';
+import UserDetails from './containers/User/UserDetails/UserDetails';
+import Layout from './hoc/Layout/Layout';
+import * as actions from './store/actions/index';
 
 class App extends Component {
 
@@ -33,6 +33,7 @@ class App extends Component {
           <Route path="/lists" component={Lists} />
           <Route path="/logout" component={Logout} />
           <Route path="/messages" component={Messages} />
+          <Route path="/users/:userId" component={UserDetails}/>
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
         </Switch>

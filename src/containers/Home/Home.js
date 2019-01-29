@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
-import Register from '../User/Register/Register';
+import UserRegister from '../User/UserRegister/UserRegister';
 import './Home.css';
 
 class Home extends Component {
@@ -22,10 +22,10 @@ class Home extends Component {
 
         let registerMessage = null;
         if(!this.props.isAuthenticated && !this.state.registerMode) {        
-            registerMessage = (<div className="Register_text">
-                                    <div className="TextAlign">
-                                        <h1 className="Text">Find your match</h1>
-                                        <h4 className="Text">Come on in to view your matches... All you need to do is sign up!</h4>
+            registerMessage = (<div className="register_text">
+                                    <div className="text-center">
+                                        <h1 className="text">Find your match</h1>
+                                        <h4 className="text">Come on in to view your matches... All you need to do is sign up!</h4>
                                         <Button bsStyle="danger" bsSize="large" onClick={this.registerToggle}>Register</Button>
                                     </div>                                    
                                 </div>);
@@ -33,11 +33,11 @@ class Home extends Component {
 
         let register = null;
         if(this.state.registerMode) {
-            register = <Register canceled={this.cancelRegisterMode}/>
+            register = <UserRegister canceled={this.cancelRegisterMode}/>
         }
 
         return(
-            <div className="Background">
+            <div className="background">
                 {registerMessage}
                 {register}
             </div>

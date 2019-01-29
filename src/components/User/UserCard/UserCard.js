@@ -1,10 +1,12 @@
-import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
 import './UserCard.css';
+import '../../../shared/card-syles.css';
+import { LinkContainer } from 'react-router-bootstrap';
 
 library.add(faHeart);
 library.add(faUser);
@@ -18,12 +20,12 @@ const userCard = (props) => {
     }
 
     return (
-        <Col xs={6} sm={6} md={4} lg={2}>
+        <Col xs={10} sm={6} md={4} lg={2}>
             <div className="card mb-4 shadow-sm">
                 <div className="card-img-wrapper">
                     <img className="card-img-top" src={userPhoto} alt={props.user.knownAs}/>
                     <ul className="list-inline member-icons animate text-center">
-                        <li><Button bsStyle="danger"><FontAwesomeIcon icon="user"/></Button></li>
+                        <li><LinkContainer to={`/users/${props.user.id}`}><Button bsStyle="danger"><FontAwesomeIcon icon="user"/></Button></LinkContainer></li>
                         <li><Button bsStyle="danger" onClick={props.likeUser}><FontAwesomeIcon icon="heart"/></Button></li>
                         <li><Button bsStyle="danger"><FontAwesomeIcon icon="envelope"/></Button></li>
                     </ul>
